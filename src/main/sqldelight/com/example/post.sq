@@ -1,0 +1,18 @@
+import java.time.Instant;
+
+CREATE TABLE post (
+    id SERIAL PRIMARY KEY,
+    author_id INT NOT NULL,
+    body VARCHAR(1024) NOT NULL,
+    created_on INT AS Instant NOT NULL,
+    updated_on INT AS Instant NOT NULL
+);
+
+selectAuthorPosts:
+SELECT * FROM POST WHERE author_id = ? LIMIT ? OFFSET ?;
+
+insert:
+INSERT INTO post(author_id, body, created_on, updated_on) VALUES ?;
+
+delete:
+DELETE FROM post WHERE id = ?;
