@@ -1,0 +1,14 @@
+import java.time.Instant;
+
+CREATE TABLE author (
+    id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL,
+    created_on INT AS Instant NOT NULL,
+    updated_on INT AS Instant NOT NULL
+);
+
+selectAll:
+SELECT * FROM author;
+
+insert:
+INSERT INTO author(name, created_on, updated_on) VALUES ?;
