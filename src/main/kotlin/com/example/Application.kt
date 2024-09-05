@@ -27,15 +27,17 @@ val koinModule = module {
 
     single {
         HikariDataSource().apply {
-            jdbcUrl = "jdbc:postgresql://localhost:5432/messageboard"
-            username = "messageboard"
-            password = "password"
+            jdbcUrl = "jdbc:postgresql://localhost:5432/postgres"
+            username = "postgres"
+            password = "postgres"
             maximumPoolSize = 3
         }
     }
 
     single {
-        Database(get<HikariDataSource>().asJdbcDriver())
+        Database(get<HikariDataSource>().asJdbcDriver()).apply {
+            Database.Schema.create(get<HikariDataSource>().asJdbcDriver())
+        }
     }
 
     single {
