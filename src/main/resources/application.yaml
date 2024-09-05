@@ -1,4 +1,6 @@
 ktor:
+    # Known issue where developemnt mode breaks graphql kotlin codegen.
+    development: false
     application:
         modules:
             - com.example.ApplicationKt.module

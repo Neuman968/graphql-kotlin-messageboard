@@ -15,7 +15,7 @@ version = "0.0.1"
 application {
     mainClass.set("io.ktor.server.netty.EngineMain")
 
-    val isDevelopment: Boolean = project.ext.has("development")
+    val isDevelopment: Boolean = false
     applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
 }
 
@@ -43,10 +43,16 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
 }
 
+graphql {
+    schema {
+        packages = listOf("com.example")
+    }
+}
+
 sqldelight {
     databases {
         create("Database") {
-            packageName.set("com.example")
+            packageName.set("com.generated.example")
             dialect("app.cash.sqldelight:postgresql-dialect:2.0.2")
         }
     }
