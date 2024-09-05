@@ -1,5 +1,7 @@
 ktor:
     # Known issue where developemnt mode breaks graphql kotlin codegen.
+    # https://github.com/ExpediaGroup/graphql-kotlin/issues/1543
+    # May be fixed, or the error may be hidden by a TypeNotSupported Exception...
     development: false
     application:
         modules:

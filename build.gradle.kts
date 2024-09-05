@@ -32,6 +32,7 @@ dependencies {
     implementation("com.expediagroup", "graphql-kotlin-ktor-server", "8.0.0")
     implementation("com.expediagroup", "graphql-kotlin-schema-generator", "8.0.0")
 
+    implementation("com.graphql-java:graphql-java-extended-scalars:22.0")
     implementation("app.cash.sqldelight:jdbc-driver:2.0.2")
 
     implementation("io.insert-koin:koin-ktor:3.5.6")
