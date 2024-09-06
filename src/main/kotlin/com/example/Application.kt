@@ -36,7 +36,9 @@ val koinModule = module {
 
     single {
         Database(get<HikariDataSource>().asJdbcDriver()).apply {
-            Database.Schema.create(get<HikariDataSource>().asJdbcDriver())
+            val driver = get<HikariDataSource>().asJdbcDriver()
+            Database.Schema.create(driver)
+            Database.Schema.migrate(driver, 0, Database.Schema.version + 1)
         }
     }
 
