@@ -8,6 +8,9 @@ CREATE TABLE post (
     updated_on TIMESTAMP NOT NULL
 );
 
+selectRecentPosts:
+SELECT * FROM post ORDER BY created_on DESC LIMIT ? OFFSET ?;
+
 selectAuthorPosts:
 SELECT * FROM post WHERE author_id = ? LIMIT ? OFFSET ?;
 

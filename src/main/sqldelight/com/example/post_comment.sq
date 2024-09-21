@@ -9,6 +9,7 @@ CREATE TABLE post_comment (
     updated_on TIMESTAMP NOT NULL
 );
 
+
 selectPostComments:
 SELECT * FROM post_comment WHERE post_id = ? ORDER BY created_on DESC LIMIT ? OFFSET ?;
 

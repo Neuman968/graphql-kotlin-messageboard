@@ -15,6 +15,7 @@ import org.koin.dsl.module
 import org.koin.ktor.ext.get
 import org.koin.ktor.plugin.Koin
 import java.time.LocalDateTime
+import javax.sql.DataSource
 import kotlin.reflect.KClass
 import kotlin.reflect.KType
 
@@ -22,7 +23,9 @@ fun main(args: Array<String>) {
     io.ktor.server.netty.EngineMain.main(args)
 }
 
-
+/**
+ * Koin module used for dependency injection.
+ */
 val koinModule = module {
 
     single {
@@ -35,10 +38,15 @@ val koinModule = module {
     }
 
     single {
+        // SQLDelight database singleton, used to access "Queries" Auto generated objects.
         Database(get<HikariDataSource>().asJdbcDriver()).apply {
-            val driver = get<HikariDataSource>().asJdbcDriver()
-            Database.Schema.create(driver)
-            Database.Schema.migrate(driver, 0, Database.Schema.version + 1)
+            val dataSource = get<HikariDataSource>()
+            val driver = dataSource.asJdbcDriver()
+            // Replace with proper version and migration tracking.
+            if (dataSource.dbNeedsCreate()) {
+                Database.Schema.create(driver)
+                Database.Schema.migrate(driver, 0, Database.Schema.version)
+            }
         }
     }
 
@@ -47,7 +55,7 @@ val koinModule = module {
     }
 
     single {
-        PostService()
+        PostService(get<Database>().postQueries)
     }
 
     single {
@@ -74,4 +82,10 @@ fun Application.module() {
         }
     }
     configureRouting()
+}
+
+fun DataSource.dbNeedsCreate(): Boolean = try {
+    !this.connection.createStatement().execute("SELECT * FROM author")
+} catch (e: Exception) {
+    true
 }

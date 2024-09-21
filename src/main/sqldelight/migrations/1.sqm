@@ -15,7 +15,7 @@ VALUES (1, 1, 'This is my first post. I am excited to share my thoughts with the
        (6, 1, 'This is my second post. I am excited to share my thoughts with the world.', now(), now()),
        (7, 2, 'I love basketball. I play basketball every day.', now(), now()),
        (8, 3, 'XOXO is the best show ever. I love it.', now(), now()),
-       (9, 4, '', now(), now()),
+       (9, 4, 'Hooray!', now(), now()),
        (10, 5,'FooBar is the best', now(), now())
 ;
 
