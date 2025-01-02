@@ -7,6 +7,9 @@ CREATE TABLE author (
     updated_on TIMESTAMP NOT NULL
 );
 
+selectAllByIds:
+SELECT * FROM author WHERE id IN ?;
+
 selectAll:
 SELECT * FROM author;
 

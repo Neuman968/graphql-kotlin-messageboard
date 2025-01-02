@@ -25,7 +25,7 @@ val UniversityDataLoader = object : KotlinDataLoader<Int, University?> {
 //    override fun getDataLoader(graphQLContext: GraphQLContext): DataLoader<Int, Post> {
 //        DataLoaderFactory.newDataLoader { ids ->
 //            CompletableFuture.supplyAsync {
-//
+//                postQueries.selectPostsForAuthors(ids).executeAsList()
 //            }
 //        }
 //    }
